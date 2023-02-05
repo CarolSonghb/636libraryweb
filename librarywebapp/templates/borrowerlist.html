@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "base.html" %}
+{% block content %}
+<!-- code in here to display a list of borrowers -->
+<!-- borrowerlist is the variable passed in containing list of loans -->
+<h4>Borrower List</h4>
+<h5>A list of all borrowers in our library</h5>
+<hr>
+<table class="table table-striped table-hover">
+    <thead>
+       <tr>
+         <th scope="col">Borrower ID</th>
+         <th scope="col">First name</th>
+         <th scope="col">Family name</th>
+         <th scope="col">Date of Birth</th>
+         <th scope="col">House number/name</th>
+         <th scope="col">Street</th>
+         <th scope="col">Town</th>
+         <th scope="col">City</th>
+         <th scope="col">Postal Code</th>
+       </tr>
+    </thead>
+    <tbody>
+    {% for borrower in borrowerlist %}
+        <tr>
+            {% for entry in borrower %}
+                <td>{{entry}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

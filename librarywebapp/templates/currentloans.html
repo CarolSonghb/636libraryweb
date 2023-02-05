@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "base.html" %}
+{% block content %}
+<!-- code in here to display a list of loans -->
+<!-- loanlist is the variable passed in containing list of loans -->
+
+<h4>Loan History Report</h4>
+<h5>A list of current and past loans</h5>
+<hr>
+
+<table class="table">
+    <thead>
+       <tr>
+         <th scope="col">Borrower</th>
+         <th scope="col">Book Title</th>
+         <th scope="col">Author</th>
+         <th scope="col">Format</th>
+         <th scope="col">Loan Date</th>
+         <th scope="col">Status</th>
+       </tr>
+    </thead>
+        <tbody>
+        <!-- using namespace to set up global variables -->
+        {% set currentloan = namespace(id= 0) %}
+            {% for loan in loanlist %}
+
+            <!-- using if statement to set the colors depending on the type of book -->
+            {% if loan[12] == "eBook" %}
+            {% set col = "green" %} 
+            {% elif loan[12] == "Audio Book" %} 
+            {% set col = "yellow" %}
+            {% else %}
+            {% set col = "white" %}
+            {% endif %}
+
+        <tr bgcolor="{{col}}">
+            
+            <!-- set to get a borrower's name combined by family name and first name -->
+            {% set famname = loan[2] %}
+            {% set firname = loan[1] %}
+            {% set borrower = famname + " " + firname%}
+            <!-- check if the global variable equals to borrowerid to
+            decide if a borrower's name needs to be displayed or not -->
+            {% if currentloan.id != loan[0] %} 
+            <td>{{borrower}}</td>
+            {% set currentloan.id = loan[0] %}
+            {% else %} 
+            <td></td>
+            {% endif %}
+            
+            <!-- using | string to convert an integer to a string -->
+            {% set status = loan[6] | string %}
+            <!-- using if statements to indicate "Returned" or "On Loan" -->
+            {% if status == "1" %}
+            {% set status = "Returned" %}
+            {% else %}
+            {% set status = "On Loan" %}
+            {% endif %} 
+
+            <td>{{ loan[8] }}</td><td>{{ loan[9] }}</td><td>{{ loan[12] }}</td>
+            <td>{{ loan[5] }}</td><td>{{ status }}</td>
+        </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

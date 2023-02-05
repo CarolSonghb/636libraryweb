@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "base.html" %}
+{% block content %}
+<!-- code in here to display searched books-->
+<h4>Search results</h4>
+<h5>A list of searched books</h5>
+<hr>
+
+<!-- make each row in table hoverable-->
+<table class="table table-hover">
+    <thead>
+       <tr>
+        <!-- using scope to make headers for the columns-->
+         <th scope="col">Copy ID</th>
+         <th scope="col">Format</th>
+         <th scope="col">Title</th>
+         <th scope="col">Author</th>
+         <th scope="col">Category</th>
+         <th scope="col">Year of Publication</th>
+         <th scope="col">Status</th>
+         <th scope="col">Loan Date</th>
+         <th scope="col">Due Date</th>
+       </tr>
+    </thead>
+    
+    <tbody>
+    <!-- using if statement so that a reminder can be shown if no matching results returned-->   
+       {% if searchedbooklist %}
+           {% for book in searchedbooklist %}
+       <tr>
+           {% set loandate = book[7] | string %}
+           {% if loandate == 'None' %}
+           {% set loandate = "N/A" %}
+           {% endif %}
+
+           {% set duedate = book[8] %}
+           {% if duedate == ' '%}
+           {% set duedate = "N/A" %}
+           {% endif %}
+
+           <td>{{ book[0] }}</td><td>{{ book[1] }}</td><td>{{ book[2] }}</td>
+           <td>{{ book[3] }}</td><td>{{ book[4] }}</td><td>{{ book[5] }}</td>
+           <td>{{ book[6] }}</td><td>{{ loandate }}</td><td>{{ duedate }}</td>
+       </tr>
+           {% endfor %}
+       {% else %}
+          Opps, no matching results found...
+       {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
