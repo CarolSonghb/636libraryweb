@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "staff.html" %}
+{% block content %}
+
+<h5 style="text-align: center; margin: 10px;"> Search a Borrower </h5>
+<form class="form" action="/staff/borrowerid" style="text-align: center;" method="POST">
+    by ID <input type="text" name="borrowerid" id="borrowerid" placeholder="borrowerid" required>
+    <input type="submit" value="Check ID">
+</form>
+<form class="form" action="/staff/borrowername" style="text-align: center;" method="POST">
+    by Name 
+    <input type="text" name="borrowerfirname" id="borrowerfirname" placeholder="firstname"> or
+    <input type="text" name="borrowerfamname" id="borrowerfamname" placeholder="lastname">
+    <input type="submit" value="Check Name">
+</form>
+
+{% endblock %}
