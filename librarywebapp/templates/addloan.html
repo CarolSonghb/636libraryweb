@@ -4,7 +4,7 @@
 <!--Student Name: Haibei(Carol) Song-->
 <!--Student ID: 1154836-->
 
-{% extends "base.html" %}
+{% extends "staff.html" %}
 {% block content %}
 <!-- borrowers is the variable passed in listing borrowers -->
 <!-- books is the variable passed in listing available books -->
@@ -15,23 +15,24 @@
 <!-- URL for submission (action) of form should be loan/add -->
 
 <body>
-   <h4>Add loan</h4>
-   <h5>Pick a book you want to borrow from the dropdown boxes</h5>
+   <h4>Add a New Loan</h4>
+   <h5>Issue a book to a borrower</h5>
    <hr><br>
    
    <p>Notice: Required values are marked by an asterisk (*)</p>
-   <form id="loan" name="loan" action="loan/add" method="post">
+
+   <form id="loan" name="loan" action="loan/add" method="POST">
 
    <!-- make the drop down box required  --> 
     <label for="borrower">* Borrowers:</label>
     <select id="borrower" name="borrower" required>
       <!-- create a default value but make it not selectable -->
-        <option selected disabled value="">Please choose your borrower name</option>
+        <option selected disabled value="">Please choose a borrower name</option>
         {% for borrower in borrowers %}
         <!-- set to get a full name combined by family name and first name  -->
         {% set firname = borrower[1] %}
         {% set famname = borrower[2] %}
-        {% set fullname = famname + " " + firname %}
+        {% set fullname = firname + " " + famname %}
         <!-- the options in the box are arranged by borrowerid -->
           <option value="{{ borrower[0] }}">
               {{ fullname }}
@@ -41,7 +42,7 @@
 
     <label for="book">* Books available:</label>
     <select id="book" name="book" required>
-        <option selected disabled value="">Please select a book you want to borrower</option>
+        <option selected disabled value="">Please select a book to issue</option>
         <!-- set to get menu options that are combined with booktitle, author and format -->
         {% for bookcopy in books %}
         {% set book = bookcopy[4] %}
@@ -58,8 +59,8 @@
   <p>
     <!-- when the form is submitted, the system will get the current date -->
     <input type="hidden" id="loandate" name="loandate" value="{{loandate}}">
-    <input type="submit" value="Yes, borrow this one" />
-    <input type="reset" value="No, choose again" />
+    <input type="submit" value="Confirm" style="margin: 10px;"/>
+    <input type="reset" value="Reset" />
  </p>
   </form>
 {% endblock %}
