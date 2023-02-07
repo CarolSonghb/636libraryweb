@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "staff.html" %}
+{% block content %}
+
+<h5 style="text-align: center; margin: 10px;"> Search a Book </h5>
+<!-- two search boxes combined with "and" or "or" -->
+<form class="form" action="/staff/searchbook" style="text-align: center;" method="POST">
+    by <input type="text" name="staffsearch1" id="staffsearch1" placeholder="Title">
+    <select name="staffop" id="staffop">
+      <option value="or" id="or">or</option>
+      <option value="and" id="and">and</option>
+    </select>
+    <input type="text" name="staffsearch2" id="staffsearch2" placeholder="Author"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+{% endblock %}
