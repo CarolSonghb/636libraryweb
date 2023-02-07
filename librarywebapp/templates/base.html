@@ -14,39 +14,7 @@
      
     <body>
       {{ testvar }}
-      <!-- check url so it can direct to the pages needed -->
-      {% if "staff" in request.url %}
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <h1>Waikirikiri Library</h1>
-          <div class="container">
-            <a class="navbar-brand" href="http://127.0.0.1:5000/staff">Staff</a>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('listbooks') }}" >List Books</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('loanbook') }}">Loan Book</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('listborrowers') }}">List Borrowers</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('currentloans') }}">Current Loans</a>
-                </li>
-              </ul>
-              <div>
-                <img src="https://media2.giphy.com/media/3o85xBwvWcj1Z11Gda/giphy.gif?cid=ecf05e47g74kicxh3a6te50tc0svkjpnzeajgk53y4w0n09a&rid=giphy.gif&ct=g" 
-        alt="books" style="width: 150px;height:150px;">
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <br>
-        <h2>Hi, welcome to Waikirikiri Library Staff Page!</h2>
       
-      {% else %}
-      <!-- direct to the public page -->
          <nav class="navbar navbar-expand-lg bg-body-tertiary">
            <h1>Waikirikiri Library</h1>
             <div class="container">
@@ -75,7 +43,7 @@
           <input type="text" name="search2" id="search2" placeholder="Author"><br><br>
           <input type="submit" value="Submit">
         </form>
-      {% endif %}
+      
 
         <style>
           body{
