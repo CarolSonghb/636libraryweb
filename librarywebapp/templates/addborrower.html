@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "staff.html" %}
+{% block content %}
+
+<h3>Add a New Borrower</h3><br>
+
+<form class="form" action="/staff/newborrower" method="POST">
+    <label for="firstname">First Name:</label>
+    <input class="input-field" type="text" id="firstname" name="firstname">
+  
+    <label for="familyname">Family Name:</label>
+    <input class="input-field" type="text" id="familyname" name="familyname">
+  
+    <label for="dobirth">Date of Birth:</label>
+    <input class="input-field" type="date" id="dobirth" name="dobirth" placeholder="dd/mm/yyyy"
+    min="1900/01/01" max="2100/12/31"><br>
+
+    <label for="housenum">House Number:</label>
+    <input class="input-field" type="text" id="housenum" name="housenum">
+
+    <label for="street">Street:</label>
+    <input class="input-field" type="text" id="street" name="street">
+
+    <label for="town">Town:</label>
+    <input class="input-field" type="text" id="town" name="town"><br>
+
+    <label for="city">City:</label>
+    <input class="input-field" type="text" id="city" name="city">
+
+    <label for="pcode">Postal Code:</label>
+    <input class="input-field" type="text" id="pcode" name="pcode"><br>
+  
+    <input class="submit" type="submit" value="Add">
+</form> 
+
+<style>
+    .input-field {
+      margin: 10px;
+    }
+    .form {
+      display: block;
+      margin: 10px auto;
+    }
+</style>
+
+{% endblock %}
