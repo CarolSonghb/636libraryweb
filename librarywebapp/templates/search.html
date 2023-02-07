@@ -7,62 +7,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- code in here to display searched books-->
-<h5>Choose a Book to Check Availability</h5><!DOCTYPE html>
-<html>
-
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
-
-{% extends "base.html" %}
-{% block content %}
-<!-- code in here to display searched books-->
 <h5>Choose a Book to Check Availability</h5>
-
-<form id="searchbook" name="searchbook" action="/searchresult" method="POST">
-   <label for="searchlabel"> Books available:</label>
-   <!-- a drop down box to display books matching the search result-->
-   <select id="searchselect" name="searchselect" required>
-       <option selected disabled value="">---- select a book ----</option>
-       {% for book in booklist %}
-    <!-- the options in the box are arranged by bookcopyid -->
-       <option value="{{ book[0] }}">
-        <!-- booktitle displayed -->
-           {{ book[1] }}
-       </option>
-       {% endfor %}
-    </select>
-    <input type="submit" value="Check" />
-</form>
-
-<hr>
-
-<!-- make each row in table striped and hoverable-->
-<table class="table table-striped table-hover">
-    <thead>
-       <tr>
-        <!-- using scope to make headers for the columns-->
-         <th scope="col">Book ID</th>
-         <th scope="col">Title</th>
-         <th scope="col">Author</th>
-         <th scope="col">Type</th>
-         <th scope="col">Year of Publication</th>
-         <th scope="col">Description</th>
-       </tr>
-    </thead>
-    
-    <tbody>
-<!-- getting data from app.py-->
-    {% for book in booklist %}
-        <tr>
-            {% for entry in book %}
-                <td>{{entry}}</td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
-{% endblock %}
 
 <form id="searchbook" name="searchbook" action="/searchresult" method="POST">
    <label for="searchlabel"> Books available:</label>
