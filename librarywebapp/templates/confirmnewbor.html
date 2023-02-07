@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<!--Student Name: Haibei(Carol) Song-->
+<!--Student ID: 1154836-->
+
+{% extends "staff.html" %}
+{% block content %}
+
+<table class="table table-striped table-hover">
+    <thead>
+       <tr>
+        <!-- using scope to make headers for the columns-->
+         <th scope="col">Full Name</th>
+         <th scope="col">D.O.B</th>
+         <th scope="col">Address</th>
+         <th scope="col">Postal Code</th>
+       </tr>
+    </thead>
+    <tbody>
+        <h5><b>Confirm New Borrower Details</b></h5>
+        {% for borrower in updateinfo %}
+        <tr>
+            {% set firname = borrower[1] %}
+            {% set famname = borrower[2] %}
+            {% set fullname = firname + " " + famname %}
+
+            {% set house = borrower[4] %}
+            {% set street = borrower[5] %}
+            {% set town = borrower[6] %}
+            {% set city = borrower[7] %}
+            {% set address = house + " " + street + " " + town + " " + city %}
+        
+            <td>{{ fullname }}</td><td>{{ borrower[3] }}</td>
+            <td>{{ address }}</td><td>{{ borrower[8] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form style="text-align: center;" action="/listborrowers">
+    <input class="input-field" type="submit" value="Confirm" id="confirm">
+</form>
+
+<style>
+    .input-field {
+      margin: 10px;
+    }
+</style>
+
+{% endblock %}
