@@ -18,9 +18,11 @@ to allow users to confirm the information entered.-->
     <label for="familyname">Family Name:</label>
     <input class="input-field" type="text" id="familyname" name="familyname">
   
+    <!-- make dateofbirth input required to prevent page from crashing
+    when users forget to enter new info-->
     <label for="dobirth">Date of Birth:</label>
     <input class="input-field" type="date" id="dobirth" name="dobirth" placeholder="dd/mm/yyyy"
-    min="1900/01/01" max="2100/12/31"><br>
+    min="1900/01/01" max="2100/12/31" required><br>
 
     <label for="housenum">House Number:</label>
     <input class="input-field" type="text" id="housenum" name="housenum">
