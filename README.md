@@ -10,7 +10,7 @@
 ##### 3. Discussion of Possible Changes to Support Multiple Library Branches
 
 --------------------------------------------------------
-*1. Structure of the Website*
+*1. Structure of the Website*   
 The website for Waikirikiri Library contains two interfaces. One is for
 public and the other one is for staff. 
 The public page has two main templates, which are linked to "Search Book" and View "List Books".
