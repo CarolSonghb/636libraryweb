@@ -11,6 +11,7 @@
 
 --------------------------------------------------------
 *1. Structure of the Website*
+![This is an image](/assets/images/structure.001.jpeg)
 
 
 
