@@ -45,8 +45,8 @@ def listbooks():
     return render_template("booklist.html", booklist = bookList)   
  
 
-@app.route("/staff/loanbook")
-def loanbook():
+@app.route("/staff/issuebook")
+def issuebook():
     todaydate = datetime.now().date()
     connection = getCursor()
     connection.execute("SELECT * FROM borrowers;")
@@ -57,7 +57,7 @@ WHERE c.format = "eBook" OR c.format ="Audio Book" OR bookcopyid NOT IN
 (SELECT bookcopyid from loans where returned = 0);"""
     connection.execute(sql)
     bookList = connection.fetchall()
-    return render_template("addloan.html", loandate = todaydate,borrowers = borrowerList, books= bookList)
+    return render_template("issuebook.html", loandate = todaydate,borrowers = borrowerList, books= bookList)
 
 @app.route("/staff/loan/add", methods=["POST"])
 def addloan():
