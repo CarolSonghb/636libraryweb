@@ -257,7 +257,7 @@ def newborrower():
     connection.execute(sql, parameters)
     connection.execute("SELECT * FROM borrowers ORDER BY borrowerid DESC LIMIT 1;")
     updateInfo = connection.fetchall()
-    return render_template("confirmnewbor.html", updateinfo = updateInfo)
+    return render_template("newborrower.html", updateinfo = updateInfo)
 
 @app.route("/staff/newloan")
 def newloan():
