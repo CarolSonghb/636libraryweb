@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
 
 {% extends "staff.html" %}
 {% block content %}
+
+<!--keep the search function displayed for quick access-->
 <h5 style="text-align: center; margin: 10px;"> Search a Book </h5>
 <!-- two search boxes combined with "and" or "or" -->
 <form class="form" action="/staff/searchbook" style="text-align: center;" method="POST">
@@ -39,11 +39,9 @@
 
 <hr>
 
-<!-- make each row in table striped and hoverable-->
 <table class="table table-striped table-hover">
     <thead>
        <tr>
-        <!-- using scope to make headers for the columns-->
          <th scope="col">Book ID</th>
          <th scope="col">Title</th>
          <th scope="col">Author</th>
@@ -55,7 +53,6 @@
     
     <tbody>
         <h5><b>Search results</b></h5>
-<!-- getting data from app.py-->
        {% for book in booklist %}
            <tr>
                {% for entry in book %}

@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
   
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
 
 {% extends "staff.html" %}
 {% block content %}
-<!-- borrowers is the variable passed in listing borrowers -->
-<!-- books is the variable passed in listing available books -->
-<!-- loandate is the variable passed in containing the current date -->
-<!-- name for the borrower dropdown borrower should be  borrower -->
-<!-- name for the book dropdown should be book-->
-<!-- name for the hidden field with date should be loandate -->
-<!-- URL for submission (action) of form should be loan/add -->
 
 <body>
    <h4>Return Book</h4>
@@ -24,7 +15,7 @@
     <label for="returnbook">Books on Loan:</label>
     <select id="returnbook" name="returnbook" required>
         <option selected disabled value="">Please select a book to return</option>
-        <!-- set to get menu options that are combined with booktitle, author and format -->
+        <!-- set to get menu options that are combined with copyid, booktitle, author and format -->
         {% for loanbook in onloanlist %}
         {% set copyid = loanbook[0] | string %}
         {% set book = loanbook[3] %}

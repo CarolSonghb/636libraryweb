@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
 
 {% extends "staff.html" %}
 {% block content %}
 
+<!--search a borrower either by their id number or names-->
 <h5 style="text-align: center; margin: 10px;"> Search a Borrower </h5>
 <form class="form" action="/staff/borrowerid" style="text-align: center;" method="POST">
     by ID <input type="text" name="borrowerid" id="borrowerid" placeholder="borrowerid" required>
