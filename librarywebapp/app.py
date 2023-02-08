@@ -37,7 +37,7 @@ def staff():
 #page for "Search Book" from staff interface
 @app.route("/staff/search")
 def staffsearch():
-    return render_template("staff/search.html")
+    return render_template("staffsearch.html")
 
 #page for "List Books" from public interface
 @app.route("/listbooks")
