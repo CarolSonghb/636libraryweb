@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
   
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
 
 {% extends "staff.html" %}
 {% block content %}
+
 <!-- borrowers is the variable passed in listing borrowers -->
 <!-- books is the variable passed in listing available books -->
 <!-- loandate is the variable passed in containing the current date -->
-<!-- name for the borrower dropdown borrower should be  borrower -->
-<!-- name for the book dropdown should be book-->
-<!-- name for the hidden field with date should be loandate -->
-<!-- URL for submission (action) of form should be loan/add -->
 
 <body>
    <h4>Add a New Loan</h4>
@@ -29,7 +24,7 @@
       <!-- create a default value but make it not selectable -->
         <option selected disabled value="">Please choose a borrower name</option>
         {% for borrower in borrowers %}
-        <!-- set to get a full name combined by family name and first name  -->
+        <!-- set to get a full name combined by first name and family name  -->
         {% set firname = borrower[1] %}
         {% set famname = borrower[2] %}
         {% set fullname = firname + " " + famname %}
