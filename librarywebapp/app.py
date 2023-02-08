@@ -334,11 +334,11 @@ def overduelist():
 @app.route("/staff/summary")
 def summary():
     connection = getCursor()
-    loansql = """SELECT b.bookid,b.booktitle, b.author, b.yearofpublication, b.category, 
+    loansql = """SELECT b.bookid,c.bookcopyid, b.booktitle, b.author, b.yearofpublication, b.category, c.format,
     COUNT(loanid) AS loantimes FROM books b
-    INNER JOIN bookcopies bc ON b.bookid = bc.bookid
-    INNER JOIN loans l ON bc.bookcopyid = l.bookcopyid
-    GROUP BY 1,2,3,4,5 ORDER BY loantimes DESC;"""
+    INNER JOIN bookcopies c ON b.bookid = c.bookid
+    INNER JOIN loans l ON c.bookcopyid = l.bookcopyid
+    GROUP BY c.bookcopyid ORDER BY b.booktitle, loantimes DESC;"""
     connection.execute(loansql)
     loanSummary = connection.fetchall()
     borrowersql = """SELECT br.borrowerid, CONCAT(br.firstname,' ', br.familyname) AS fullname, 
