@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
 
 {% extends "staff.html" %}
 {% block content %}
 
+<!--a search box always displayed for quick access-->
 <h5 style="text-align: center; margin: 10px;"> New Search</h5>
+<!--form for borrowerid search-->
 <form class="form" action="/staff/borrowerid" style="text-align: center;" method="POST">
     by ID <input type="text" name="borrowerid" id="borrowerid" placeholder="borrowerid" required>
     <input type="submit" value="Check ID">
 </form>
+<!--form for borrowername search
+users can choose either to search firstname or familyname-->
 <form class="form" action="/staff/borrowername" style="text-align: center;" method="POST">
     by Name 
     <input type="text" name="borrowerfirname" id="borrowerfirname" placeholder="firstname"> or
@@ -19,7 +21,8 @@
     <input type="submit" value="Check Name">
 </form>
 
-<!-- code in here to display searched books-->
+<!--a dropdown box listing all borrowers matching the search
+for users to select one-->
 <h5><b>Select a Borrower to Update</b></h5>
 
 <form id="borrowersearch" name="borrowersearch" action="/staff/editborrower" method="POST">
@@ -42,11 +45,11 @@
 
 <hr>
 
-<!-- make each row in table striped and hoverable-->
+<!--a table listing all borrowers matching the search-->
 <table class="table table-striped table-hover">
     <thead>
        <tr>
-        <!-- using scope to make headers for the columns-->
+        
          <th scope="col">Borrower ID</th>
          <th scope="col">Full Name</th>
          <th scope="col">D.O.B</th>
@@ -58,7 +61,6 @@
     <tbody>
 
     <h5><b>Search results</b></h5>
-    <!-- getting data from app.py-->
     {% if searchedborrowerlist %}
        {% for borrower in searchedborrowerlist %}
        <tr>
