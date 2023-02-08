@@ -65,7 +65,7 @@ def issuebook():
     return render_template("issuebook.html", loandate = todaydate,borrowers = borrowerList, books= bookList)
 
 #page for updating a new loan
-@app.route("/staff/loan/add", methods=["POST"])
+@app.route("/staff/newloan", methods=["POST"])
 def addloan():
     borrowerid = request.form.get('borrower')
     bookid = request.form.get('book')
