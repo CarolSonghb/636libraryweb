@@ -12,7 +12,7 @@
 --------------------------------------------------------
 *1. Structure of the Website*
 
-![This is an image](/assets/images/structure.001.jpeg)
+![This is an image](/structure.001.jpeg)
 
 
 
