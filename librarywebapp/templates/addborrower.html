@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
-
 {% extends "staff.html" %}
 {% block content %}
 
+
 <h3>Add a New Borrower</h3><br>
+
+<!--A form to enter details for a new borrower,
+the information entered will be sent to borrowerlist.html-->
 
 <form class="form" action="/staff/newborrower" method="POST">
     <label for="firstname">First Name:</label>
