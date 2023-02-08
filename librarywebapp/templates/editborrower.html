@@ -69,7 +69,7 @@
     <label for="pcode">Postal Code:</label>
     <input class="input-field" type="text" id="pcode" name="pcode" value="{{ borrower[8] }}"><br>
   
-    <input class="input-field" type="submit" value="Update">
+    <input class="submit" type="submit" value="Update">
     <input class="input-field"type="reset" value="Reset" />
 </form> 
 {% endfor %}
@@ -77,6 +77,10 @@
 <style>
     .input-field {
       margin: 10px;
+    }
+    .submit {
+      margin: 10px 10px;
+      background-color: #f9e486;
     }
 </style>
 
