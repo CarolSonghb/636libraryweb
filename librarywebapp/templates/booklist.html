@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 
-<!--Student Name: Haibei(Carol) Song-->
-<!--Student ID: 1154836-->
 
 {% extends "base.html" %}
 {% block content %}
+
 <!-- code in here to display a list of books-->
 <h4>Book List</h4>
 <h5>A list of all books in our collection</h5>
@@ -26,7 +25,7 @@
     </thead>
     
     <tbody>
-<!-- getting data from app.py-->
+<!-- getting data from booklist-->
     {% for book in booklist %}
         <tr>
             {% for entry in book %}
