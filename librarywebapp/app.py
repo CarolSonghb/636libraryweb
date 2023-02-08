@@ -24,18 +24,22 @@ def getCursor():
     dbconn = connection.cursor()
     return dbconn
 
+#home page for public interface
 @app.route("/")
 def home():
     return render_template("base.html")
 
+#home page for staff interface
 @app.route("/staff")
 def staff():
     return render_template("staff.html")
 
-@app.route("/staffsearch")
+#page for "Search Book" from staff interface
+@app.route("/staff/search")
 def staffsearch():
-    return render_template("staffsearch.html")
+    return render_template("staff/search.html")
 
+#page for "List Books" from public interface
 @app.route("/listbooks")
 def listbooks():
     connection = getCursor()
@@ -44,21 +48,23 @@ def listbooks():
     print(bookList)
     return render_template("booklist.html", booklist = bookList)   
  
-
+#page for "Issue Book" from staff interface
 @app.route("/staff/issuebook")
 def issuebook():
     todaydate = datetime.now().date()
     connection = getCursor()
     connection.execute("SELECT * FROM borrowers;")
     borrowerList = connection.fetchall()
-    sql = """SELECT * FROM bookcopies c
-INNER JOIN books b ON b.bookid = c.bookid
-WHERE c.format = "eBook" OR c.format ="Audio Book" OR bookcopyid NOT IN 
-(SELECT bookcopyid from loans where returned = 0);"""
+    #query to only show digital books and avalable physical books
+    sql = """SELECT * FROM bookcopies c INNER JOIN books b 
+    ON b.bookid = c.bookid
+    WHERE c.format = "eBook" OR c.format ="Audio Book" OR bookcopyid 
+    NOT IN (SELECT bookcopyid from loans where returned = 0);"""
     connection.execute(sql)
     bookList = connection.fetchall()
     return render_template("issuebook.html", loandate = todaydate,borrowers = borrowerList, books= bookList)
 
+#page for updating a new loan
 @app.route("/staff/loan/add", methods=["POST"])
 def addloan():
     borrowerid = request.form.get('borrower')
@@ -68,6 +74,7 @@ def addloan():
     cur.execute("INSERT INTO loans (borrowerid, bookcopyid, loandate, returned) VALUES(%s,%s,%s,0);",(borrowerid, bookid, str(loandate),))
     return render_template("newloan.html")
 
+#page to show after a new borrower has been added or updating a borrower's detal or 
 @app.route("/listborrowers")
 def listborrowers():
     connection = getCursor()
@@ -99,7 +106,8 @@ def search():
     avaBookList = connection.fetchall()
     return render_template("search.html", booklist = avaBookList)
 
-@app.route("/staff/searchbook", methods=["POST"])#search for the staff page
+#page to show after a search request has been sent
+@app.route("/staff/searchbook", methods=["POST"])
 def staffsearchbook():
     searchTitle = request.form.get('staffsearch1') 
     searchAuthor = request.form.get('staffsearch2') 
@@ -119,9 +127,10 @@ def staffsearchbook():
     avaBookList = connection.fetchall()
     return render_template("staffsearchbook.html", booklist = avaBookList)
 
+#page to show all copies after a searched book has been selected for public interface
 @app.route("/searchresult", methods=["POST"])
 def searchresult():
-    searchBook = request.form.get('searchselect')#get the data of the book a user has chosen
+    searchBook = request.form.get('searchselect')
     print(searchBook)
     connection = getCursor()
     sql = """SELECT c.bookcopyid, c.format, b.booktitle, b.author, b.category, 
@@ -136,9 +145,10 @@ def searchresult():
     print(searchedBookList)
     return render_template("searchresult.html", searchedbooklist = searchedBookList)
 
+#page to show all copies after a searched book has been selected for staff interface
 @app.route("/staff/searchresult", methods=["POST"])
 def staffsearchresult():
-    searchBook = request.form.get('staffselect')#get the data of the book a user has chosen
+    searchBook = request.form.get('staffselect')
     print(searchBook)
     connection = getCursor()
     sql = """SELECT c.bookcopyid, c.format, b.booktitle, b.author, b.category, 
@@ -153,11 +163,12 @@ def staffsearchresult():
     print(searchedBookList)
     return render_template("staffsearchresult.html", searchedbooklist = searchedBookList)
 
+#page for "Search Borrower" from staff interface
 @app.route("/staff/searchborrower")
 def searchborrower():
     return render_template("searchborrower.html")
 
-
+#page to display when users enter borrowerid to search
 @app.route("/staff/borrowerid", methods=["POST"])
 def searchborrowerid():
     borrowerSearchid = request.form.get('borrowerid')
@@ -172,7 +183,7 @@ def searchborrowerid():
     print(searchedID)
     return render_template("borrowerid.html", searchedborrowerlist = searchedID)
 
-
+#page to display when users enter borrower name to search
 @app.route("/staff/borrowername", methods=["POST"])
 def searchborrowername():
     borrowerFirname = request.form.get('borrowerfirname')
@@ -197,7 +208,8 @@ def searchborrowername():
     searchedname = connection.fetchall()
     print(searchedname)
     return render_template("borrowername.html", searchedborrowerlist = searchedname)
-    
+
+#page for editing borrower details afrer a borrower has been selected   
 @app.route("/staff/editborrower", methods=["POST"])
 def editborrower():
     borrowerinfo = request.form.get('borrowerselect')
@@ -210,7 +222,7 @@ def editborrower():
     print(searchedinfo)
     return render_template("editborrower.html", searchedborrowerlist = searchedinfo)
 
-
+#page to display updated details then confirm
 @app.route("/staff/updateconfirm", methods=["POST"])
 def borrowerupdate():
     firstname = request.form.get('firstname')
@@ -234,11 +246,12 @@ def borrowerupdate():
     print(updateInfo)
     return render_template("updateconfirm.html", updateinfo = updateInfo)
 
-
+#page for "Add borrower" from staff interface
 @app.route("/staff/addborrower")
 def addborrower():
     return render_template("addborrower.html")
 
+#page for getting data for a new borrower
 @app.route("/staff/newborrower", methods=["POST"])
 def newborrower():
     firstname = request.form.get('firstname')
@@ -259,10 +272,12 @@ def newborrower():
     updateInfo = connection.fetchall()
     return render_template("newborrower.html", updateinfo = updateInfo)
 
+#page to display after a new loan has been added
 @app.route("/staff/newloan")
 def newloan():
     return render_template("newloan.html")
 
+#function to display books on loan in a dropdown box
 @app.route("/staff/returnbook")
 def loanbooklist():
     connection = getCursor()
@@ -275,6 +290,7 @@ def loanbooklist():
     onLoanlist = connection.fetchall()
     return render_template("returnbook.html", onloanlist = onLoanlist)
 
+#page to update data when users choose a book to return
 @app.route("/staff/returnbook", methods=["POST"])
 def returnbook():
     connection = getCursor()
@@ -295,7 +311,7 @@ def returnbook():
     loanList = connection.fetchall()
     return render_template("loanreturn.html", loanlist = loanList)
 
-
+#page for "Overdue Book" from staff interface
 @app.route("/staff/overduelist")
 def overduelist():
     connection = getCursor()
@@ -314,6 +330,7 @@ def overduelist():
     print(overdueList)
     return render_template("overduelist.html", overduelist = overdueList)
 
+#page for "Summary" from staff interface to display loan summary and borrower summary
 @app.route("/staff/summary")
 def summary():
     connection = getCursor()
