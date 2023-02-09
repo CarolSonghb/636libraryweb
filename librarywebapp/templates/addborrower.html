@@ -12,11 +12,13 @@ The information entered will be sent to newborrower.html
 to allow users to confirm the information entered.-->
 
 <form class="form" action="/staff/newborrower" method="POST">
+  <!-- make all input fields required to prevent page from crashing
+    when users forget to enter new info-->
     <label for="firstname">First Name:</label>
-    <input class="input-field" type="text" id="firstname" name="firstname">
+    <input class="input-field" type="text" id="firstname" name="firstname" required>
   
     <label for="familyname">Family Name:</label>
-    <input class="input-field" type="text" id="familyname" name="familyname">
+    <input class="input-field" type="text" id="familyname" name="familyname" required>
   
     <!-- make dateofbirth input required to prevent page from crashing
     when users forget to enter new info-->
@@ -25,19 +27,19 @@ to allow users to confirm the information entered.-->
     min="1900/01/01" max="2100/12/31" required><br>
 
     <label for="housenum">House Number:</label>
-    <input class="input-field" type="text" id="housenum" name="housenum">
+    <input class="input-field" type="text" id="housenum" name="housenum"required>
 
     <label for="street">Street:</label>
-    <input class="input-field" type="text" id="street" name="street">
+    <input class="input-field" type="text" id="street" name="street"required>
 
     <label for="town">Town:</label>
-    <input class="input-field" type="text" id="town" name="town"><br>
+    <input class="input-field" type="text" id="town" name="town" required><br>
 
     <label for="city">City:</label>
-    <input class="input-field" type="text" id="city" name="city">
+    <input class="input-field" type="text" id="city" name="city" required>
 
     <label for="pcode">Postal Code:</label>
-    <input class="input-field" type="text" id="pcode" name="pcode"><br>
+    <input class="input-field" type="text" id="pcode" name="pcode" required><br>
   
     <input class="submit" type="submit" value="Add">
     <input class="input-field"type="reset" value="Reset" />
