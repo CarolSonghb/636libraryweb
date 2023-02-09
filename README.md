@@ -32,5 +32,6 @@ Digital copy of books would have an available period of time (eg. 30 days). The 
    
 To support multiple library branches, the database would need a new table, maybe called "libraries" that has information from different branches, such as a libraryid, name, location, and contact number. It would become a parent table for the "books", and the libraryid the parent field for the bookid of "books".  
   
-For the web app, the book list that shows availablity would also have the library branch displayed, indicating if a book is available at different braches. Users would also be able to first choose a branch to see book status at that library.  
+For the web app, the book list that shows availablity would also have the library branch displayed, indicating if a book is available at different braches. Users would also be able to first choose a branch to see book status at that library.
+  
 At the staff page, the staff will first choose a branch of the library that they would be working at. If the branch is not chosen at the start, when a staff is working on issuing books or returning, they will be reminded to choose a branch then.
